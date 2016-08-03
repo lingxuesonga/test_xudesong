@@ -1,0 +1,89 @@
+<ion-view view-title="首页" class="home">
+
+  <ion-content overflow-scroll="true" ng-class="hasFooter()">
+    <form class="list">
+      <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true">
+        <ion-slide>
+          <div class="box blue"><img class="icon ion-image" src="img/homeSlideOne.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="box yellow"><img class="icon ion-image" src="img/homeSlideTwo.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="box pink"><img class="icon ion-image" src="img/homeSlideThree.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+      </ion-slide-box>
+    </form>
+        <!--<section class="featured" style="background-image:url('data:image/png;base64,{{featured[0]}}')"></section>-->
+
+    <!--顶部三个按钮-->
+    <div class="row" style="border-bottom: 1px solid #e4e4e4;padding: 10px;">
+      <div class="col col-33"  style="padding: 0;width: 33.33%" ng-click="goSiftSearchCar()">
+        <div class="light" style="text-align: center;">
+          <span class="top_icon"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">新歌速递</p>
+        </div>
+      </div>
+      <div class="col  col-33"  style="padding: 0;width: 33.33%" ng-click="goAboutMe()">
+        <div class=" light">
+          <span class="top_icon top_icon2"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">发布合伙</p>
+        </div>
+      </div>
+      <div class="col  col-33"  style="padding: 0;width: 33%" ng-click="goHelp()">
+        <div class=" light">
+          <span class="top_icon top_icon3"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">期乐top榜</p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+        <section class="">
+          <h4>期乐推荐</h4>
+
+          <div class="wide-as-needed">
+              <a ng-repeat="item in topAlbums" href="#/tab/new/album/{{item.id.attributes['im:id']}}"
+               class="item-grid img-square">
+
+              <img ng-src="{{item['im:image'][2].label }}">
+              <h5 class="ellipsed">{{ (item.title.label).slice(0, (item.title.label).indexOf("-") ) }}</h5>
+              <p class="ellipsed">{{ item['im:artist'].label }}</p>
+            </a>
+          </div>
+        </section>
+
+        <!--<section class="subfeature padding">-->
+            <!--<div class="wide-as-needed">-->
+              <!--<figure style="background-image:url('data:image/png;base64,{{featured[1]}}')"></figure>-->
+              <!--<figure style="background-image:url('data:image/png;base64,{{featured[2]}}')"></figure>-->
+              <!--<figure style="background-image:url('data:image/png;base64,{{featured[0]}}')"></figure>-->
+            <!--</div>-->
+
+        <!--</section>-->
+
+        <section class="">
+          <h4>热门歌单</h4>
+
+          <div class="wide-as-needed">
+              <a ng-repeat="item in topSongs" href="#/tab/new" class="item-grid img-square" ng-click="setAudio($index, {{item.id.attributes['im:id']}})">
+                <img ng-src="{{ item['im:image'][2].label }}">
+                <h5 class="ellipsed">{{ (item.title.label).slice(0, (item.title.label).indexOf("-") ) }}</h5>
+                <p class="ellipsed">{{ item['im:artist'].label }}</p>
+              </a>
+          </div>
+        </section>
+  </ion-content>
+
+  <div class="music-footer" ng-if="musicPlaying" ng-click="openModal()">
+
+    <span class="track">{{currentTrackDetails.trackName}}</span>
+    <span class="artist">{{currentTrackDetails.artistName}}</span>
+
+  </div>
+
+</ion-view>

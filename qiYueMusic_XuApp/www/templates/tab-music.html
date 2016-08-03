@@ -1,0 +1,74 @@
+<ion-view view-title="列表" class="home">
+  <ion-nav-title>
+    <div class="topHomePage" >
+      <div class="logo"><img src="img/homeTopLogo.png"></div>
+    </div>
+  </ion-nav-title>
+  <ion-content overflow-scroll="true" ng-class="hasFooter()">
+    <form class="list">
+      <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true">
+        <ion-slide>
+          <div class="box blue"><img class="icon ion-image" src="img/homeSlideOne.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="box yellow"><img class="icon ion-image" src="img/homeSlideTwo.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="box pink"><img class="icon ion-image" src="img/homeSlideThree.jpg" width="100%" height="200px"></div>
+        </ion-slide>
+      </ion-slide-box>
+    </form>
+
+    <!--顶部三个按钮-->
+    <div class="row" style="border-bottom: 1px solid #e4e4e4;padding: 10px;">
+      <div class="col col-25"  style="padding: 0;width: 25%" ng-click="goSiftSearchCar()">
+        <div class="light" style="text-align: center;">
+          <span class="top_icon"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">歌</p>
+        </div>
+      </div>
+      <div class="col  col-25"  style="padding: 0;width: 25%" ng-click="goAboutMe()">
+        <div class=" light">
+          <span class="top_icon top_icon2"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">曲</p>
+        </div>
+      </div>
+      <div class="col  col-25"  style="padding: 0;width: 25%" ng-click="goHelp()">
+        <div class=" light">
+          <span class="top_icon top_icon3"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">词</p>
+        </div>
+      </div>
+      <div class="col  col-25"  style="padding: 0;width: 25%" ng-click="goHelp()">
+        <div class=" light">
+          <span class="top_icon top_icon3"></span>
+          <p align="center" style="color: black;height: 35px;line-height:45px;">MV</p>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+
+        <div ng-repeat="item in filtered">
+          <div ng-if="(item.title.label | limitTo: 1) != ( filtered[$index - 1].title.label | limitTo: 1 )" class="item item-divider">
+            {{item.title.label | limitTo: 1}}
+          </div>
+          <!--点击此曲，跳转到播放页面 传递$index 和 id -->
+          <a href="#/tab/music"
+             class="item item-avatar img-square" ng-click="setAudio($index, {{item.id.attributes['im:id']}})">
+
+            <img ng-src="{{ item['im:image'][2].label }}">
+            <h2>{{ (item.title.label).slice(0, (item.title.label).indexOf("-") ) }}</h2>
+            <h4>{{ item['im:artist'].label }}</h4>
+          </a>
+        </div>
+      </div>
+  </ion-content>
+
+  <div class="music-footer" ng-if="musicPlaying" ng-click="openModal()">
+
+    <span class="track">{{currentTrackDetails.trackName}}</span>
+    <span class="artist">{{currentTrackDetails.artistName}}</span>
+
+  </div>
+
+</ion-view>

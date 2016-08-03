@@ -1,0 +1,32 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-top bar-positive tabs-standard">
+
+
+  <!--New Tab -->
+  <ion-tab title="首页" href="#/tab/home">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Music Tab -->
+  <ion-tab title="词曲歌" href="#/tab/music">
+    <ion-nav-view name="tab-music"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="合伙" href="#/tab/teamwork">
+    <ion-nav-view name="tab-teamwork"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Music Tab -->
+  <ion-tab title="歌单" href="#/tab/album">
+    <ion-nav-view name="tab-album"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="活动" href="#/tab/activity">
+    <ion-nav-view name="tab-activity"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
